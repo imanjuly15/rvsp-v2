@@ -1,6 +1,5 @@
 /* What keeps the page in heaven while scrolling: a sky that warms toward the gate, passing clouds, growing vines. */
 import Art from './art.js';
-import Intro from './intro.js';
 
 const Heaven = (function () {
   const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -64,7 +63,7 @@ const Heaven = (function () {
     const end = document.getElementById('heaven-end');
     const box = document.getElementById('vines');
     const W = page.clientWidth;
-    const H = end.offsetTop + end.offsetHeight * .5;
+    const H = end.offsetTop + 40;
     const compact = W < 560;
     const edge = compact ? 5 : 34;
     const amp = compact ? 4 : 11;
@@ -174,10 +173,10 @@ const Heaven = (function () {
     requestAnimationFrame(frame);
   }
 
-  function watch(selector, threshold, onSeen) {
+  function watch(selector, threshold) {
     const items = document.querySelectorAll(selector);
     if (calm || !('IntersectionObserver' in window)) {
-      items.forEach((el) => { el.classList.add('seen'); onSeen?.(el, true); });
+      items.forEach((el) => el.classList.add('seen'));
       return;
     }
     const io = new IntersectionObserver((entries) => {
@@ -185,34 +184,9 @@ const Heaven = (function () {
         if (!entry.isIntersecting) return;
         entry.target.classList.add('seen');
         io.unobserve(entry.target);
-        onSeen?.(entry.target, false);
       });
     }, { threshold });
     items.forEach((el) => io.observe(el));
-  }
-
-  function doves(end) {
-    const layer = end.querySelector('.end-doves');
-    if (!layer) return;
-    const w = layer.clientWidth;
-    const h = layer.clientHeight;
-    const door = { x: `${w / 2}px`, y: `${h * .55}px` };
-    Art.flyDove(layer, {
-      duration: 3600, delay: 1500,
-      path: [
-        { x: `${-w * .1}px`, y: `${h * .16}px`, s: .62, at: 0 },
-        { x: `${w * .26}px`, y: `${h * .1}px`, s: .62, at: .5 },
-        { x: door.x, y: door.y, s: .08, at: 1, o: 0 },
-      ],
-    });
-    Art.flyDove(layer, {
-      duration: 3600, delay: 2100, flip: true, flap: '.56s',
-      path: [
-        { x: `${w * 1.1}px`, y: `${h * .24}px`, s: .54, at: 0 },
-        { x: `${w * .76}px`, y: `${h * .14}px`, s: .54, at: .5 },
-        { x: door.x, y: door.y, s: .08, at: 1, o: 0 },
-      ],
-    });
   }
 
   function init(sky) {
@@ -223,7 +197,6 @@ const Heaven = (function () {
     const tasks = [
       () => buildSky(sky),
       buildBanks,
-      () => Intro.endScene(document.getElementById('heaven-end')),
       buildVines,
       () => { measure(); onScroll(); watchSize(); },
     ];
@@ -266,7 +239,6 @@ const Heaven = (function () {
   function start() {
     started = true;
     watch('.bank', .35);
-    watch('.heaven-end', .4, (end, instant) => { if (!instant) doves(end); });
     onScroll();
   }
 

@@ -24,32 +24,11 @@ const Art = (function () {
       <linearGradient id="g-leaf" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="#a9bb7e"/><stop offset="1" stop-color="#607c47"/>
       </linearGradient>
-      <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#f7e5b1"/><stop offset=".35" stop-color="#c0913f"/><stop offset=".6" stop-color="#f4dfa6"/><stop offset="1" stop-color="#a0722a"/>
-      </linearGradient>
-      <linearGradient id="g-door" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#fffbef"/><stop offset=".6" stop-color="#f7e9c8"/><stop offset="1" stop-color="#ecd7a8"/>
-      </linearGradient>
-      <linearGradient id="g-door-panel" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#fff8e6"/><stop offset="1" stop-color="#f1deb3"/>
-      </linearGradient>
-      <radialGradient id="g-beyond" cx=".5" cy=".55" r=".7">
-        <stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#fffbea"/><stop offset="1" stop-color="#fdf0d0"/>
-      </radialGradient>
       <linearGradient id="g-dove" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ece3d2"/>
       </linearGradient>
       <linearGradient id="g-dove-far" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0" stop-color="#f3ecdf"/><stop offset="1" stop-color="#d9cdb7"/>
-      </linearGradient>
-      <linearGradient id="g-flame" x1="0" y1="1" x2="0" y2="0">
-        <stop offset="0" stop-color="#e8701a"/><stop offset=".45" stop-color="#ffb02e"/><stop offset="1" stop-color="#fff0a8"/>
-      </linearGradient>
-      <linearGradient id="g-flame-core" x1="0" y1="1" x2="0" y2="0">
-        <stop offset="0" stop-color="#ffd76a"/><stop offset="1" stop-color="#fffdf0"/>
-      </linearGradient>
-      <linearGradient id="g-brass" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#f6dc95"/><stop offset=".45" stop-color="#c8953c"/><stop offset="1" stop-color="#7c5317"/>
       </linearGradient>
       <g id="f-jasmine">
         ${radial(5, (a) => `<path d="${PETAL}" transform="rotate(${a})" fill="url(#g-petal)" stroke="#c9a65c" stroke-opacity=".45" stroke-width="1"/>`)}
@@ -101,23 +80,6 @@ const Art = (function () {
     const angles = [-64, -32, 0, 32, 64];
     const paths = angles.map((a) => `<path d="M0 0C-7-7-8-20 0-30 8-20 7-7 0 0Z" transform="rotate(${a})"/>`).join('');
     return `<svg viewBox="-34 -34 68 40" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5">${paths}</g></svg>`;
-  }
-
-  /** A brass oil lamp. Its flame shows once a parent carries the class "lit". */
-  function lampSvg() {
-    return `<svg class="lamp" viewBox="0 0 160 150" aria-hidden="true">
-      <g class="lamp-flame"><g class="lamp-flicker">
-        <path d="M80 4C92 28 106 44 99 60 94 73 66 73 61 60 54 44 68 28 80 4Z" fill="url(#g-flame)"/>
-        <path d="M80 32C86 43 92 50 89 60 86 67 74 67 71 60 68 50 74 43 80 32Z" fill="url(#g-flame-core)"/>
-      </g></g>
-      <path d="M80 62V74" stroke="#4a2c12" stroke-width="3" stroke-linecap="round"/>
-      <path d="M66 112 60 133C60 141 100 141 100 133L94 112Z" fill="url(#g-brass)"/>
-      <ellipse cx="80" cy="138" rx="34" ry="7" fill="url(#g-brass)"/>
-      <path d="M18 70C26 106 54 118 80 118 106 118 134 106 142 70 122 78 102 80 80 80 58 80 38 78 18 70Z" fill="url(#g-brass)"/>
-      <ellipse cx="80" cy="73" rx="62" ry="9" fill="#f3d98f"/>
-      <ellipse cx="80" cy="74" rx="52" ry="5.5" fill="#6d4614"/>
-      <path d="M30 88C46 102 114 102 130 88" fill="none" stroke="#fbeab8" stroke-opacity=".55" stroke-width="1.6"/>
-    </svg>`;
   }
 
   /* Each wing is its own layer, so flapping moves a finished picture instead of repainting the bird. */
@@ -268,17 +230,13 @@ const Art = (function () {
   const LIGHTS = {
     sun: (ctx, n) => radialFill(ctx, n, [[0, 'rgba(255,246,214,.95)'], [.16, 'rgba(255,238,196,.5)'], [.46, 'rgba(255,238,196,0)']]),
     rays: (ctx, n) => raysInto(ctx, n, 5, 10, 'rgba(255,255,255,.2)', [[0, '#000'], [.62, 'rgba(0,0,0,0)']]),
-    'gate-burst': (ctx, n) => raysInto(ctx, n, 4, 7, 'rgba(255,250,225,.55)', [[0, '#000'], [.16, 'rgba(0,0,0,.55)'], [.44, 'rgba(0,0,0,0)']]),
-    'gate-glow': (ctx, n) => radialFill(ctx, n, [[0, 'rgba(255,253,240,1)'], [.12, 'rgba(255,246,214,.85)'], [.44, 'rgba(255,240,200,0)']]),
-    'lamp-glow': (ctx, n) => radialFill(ctx, n, [[0, 'rgba(255,214,140,.85)'], [.2, 'rgba(255,170,80,.42)'], [.44, 'rgba(255,150,70,.12)'], [.66, 'rgba(255,150,70,0)']]),
-    'end-glow': (ctx, n) => radialFill(ctx, n, [[0, 'rgba(255,253,240,.95)'], [.22, 'rgba(255,246,214,.6)'], [.58, 'rgba(255,240,200,0)']]),
   };
 
   /** Swaps each light placeholder inside root for a small painted canvas with the same class. */
   function bakeLights(root) {
     Object.entries(LIGHTS).forEach(([name, paint]) => {
       root.querySelectorAll(`div.${name}`).forEach((el) => {
-        const size = name === 'rays' || name === 'gate-burst' ? 768 : 256;
+        const size = name === 'rays' ? 768 : 256;
         const canvas = document.createElement('canvas');
         canvas.width = size;
         canvas.height = size;
@@ -287,30 +245,6 @@ const Art = (function () {
         el.replaceWith(canvas);
       });
     });
-  }
-
-  /** Adds gently drifting clouds to a sky layer. */
-  function populateSky(sky, { floor = false } = {}) {
-    const small = window.innerWidth < 700;
-    const clouds = [
-      { w: 760, h: 300, seed: 11, left: -18, top: 4, scale: small ? .6 : 1, dur: 110, dx: 50, op: .9 },
-      { w: 640, h: 260, seed: 29, left: 62, top: 11, scale: small ? .6 : 1, dur: 140, dx: 70, op: .85 },
-      { w: 900, h: 340, seed: 47, left: 28, top: 26, scale: small ? .55 : .85, dur: 170, dx: 40, op: .55 },
-      { w: 820, h: 320, seed: 53, left: -28, top: 44, scale: small ? .7 : 1.1, dur: 130, dx: 60, op: .95 },
-      { w: 820, h: 320, seed: 71, left: 66, top: 52, scale: small ? .7 : 1.1, dur: 150, dx: 60, op: .95 },
-    ];
-    clouds.forEach((c) => {
-      const canvas = cloudCanvas(c.w, c.h, c.seed);
-      canvas.className = 'cloud';
-      canvas.style.cssText = `left:${c.left}%;top:${c.top}%;width:${c.w * c.scale}px;height:${c.h * c.scale}px;opacity:${c.op};--dur:${c.dur}s;--dx:${c.dx}px`;
-      sky.appendChild(canvas);
-    });
-    if (floor) {
-      const base = cloudCanvas(1800, 460, 97, { floor: true, puffs: 150 });
-      base.className = 'gate-floor';
-      base.style.cssText = `width:max(130vw,1000px);height:${small ? 30 : 36}vh`;
-      sky.appendChild(base);
-    }
   }
 
   /** Slow-falling white and pale-gold petals, tumbling in 3D. */
@@ -410,8 +344,8 @@ const Art = (function () {
   }
 
   return {
-    DEFS, lotus, flower, leaf, staticLotusGlyph, lampSvg, doveMarkup, flyDove,
-    cloudCanvas, populateSky, startPetals, portraitFlowers, seeded, bakeLights,
+    DEFS, lotus, flower, leaf, staticLotusGlyph, doveMarkup, flyDove,
+    cloudCanvas, startPetals, portraitFlowers, seeded, bakeLights,
   };
 })();
 

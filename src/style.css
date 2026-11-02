@@ -29,7 +29,7 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-html.play-intro body { overflow: hidden; background: #070a22; }
+html.play-intro body { overflow: hidden; background: #050403; }
 #art-defs { position: absolute; }
 [hidden] { display: none !important; }
 
@@ -89,61 +89,6 @@ html.play-intro #petals { z-index: 60; }
 /* ---------- Opening scene ---------- */
 #gate-root { display: none; }
 html.play-intro #gate-root { display: block; }
-.gate-overlay { position: fixed; inset: 0; z-index: 50; overflow: hidden; background: var(--sky-low); }
-.gate-scene { position: absolute; inset: 0; transform-origin: 50% 47%; will-change: transform; }
-.gate-box {
-  position: absolute; left: 50%; top: 47%;
-  height: min(60svh, 118vw);
-  aspect-ratio: 480 / 680;
-  transform: translate(-50%, -50%);
-}
-.gate-box svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.gate-opening {
-  position: absolute;
-  left: 8.333%; top: 5.882%; width: 83.333%; height: 88.235%;
-  perspective: 1100px;
-  perspective-origin: 50% 55%;
-}
-.gate-leaf { position: absolute; top: 0; bottom: 0; width: 50%; will-change: transform; }
-.gate-box .gate-leaf svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; }
-.gate-leaf.left { left: 0; transform-origin: 0 50%; animation: door-left 2.4s cubic-bezier(.5, .02, .22, 1) var(--door-delay, 3900ms) both; }
-.gate-leaf.right { right: 0; transform-origin: 100% 50%; animation: door-right 2.4s cubic-bezier(.5, .02, .22, 1) var(--door-delay, 3900ms) both; }
-@keyframes door-left { from { transform: rotateY(0); } to { transform: rotateY(104deg); } }
-@keyframes door-right { from { transform: rotateY(0); } to { transform: rotateY(-104deg); } }
-.gate-glow {
-  position: absolute; left: 50%; top: 47%;
-  width: 150vmax; height: 150vmax;
-  transform: translate(-50%, -50%);
-  animation: fade-in 2.4s ease-in var(--glow-delay, 4100ms) both;
-  pointer-events: none;
-}
-@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-.gate-frame-art .vine { fill: none; stroke: #7d9659; stroke-width: 3; stroke-linecap: round; animation: vine 3s ease-out var(--vine-delay, 800ms) both; }
-@keyframes vine { from { stroke-dashoffset: var(--len); } to { stroke-dashoffset: 0; } }
-.gate-floor { position: absolute; left: 50%; bottom: -6vh; transform: translateX(-50%); }
-.gate-garden {
-  position: absolute; left: 50%; top: 47%;
-  height: min(60svh, 118vw);
-  aspect-ratio: 480 / 680;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-.gate-box.gate-garland svg, .gate-garden svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.gate-text { position: absolute; left: 16px; right: 16px; text-align: center; color: var(--ink); }
-.gate-om {
-  top: max(7.5svh, 62px);
-  opacity: 0;
-  font: 600 clamp(.95rem, 2.4vh, 1.2rem)/1.2 var(--display);
-  letter-spacing: .32em;
-  text-indent: .32em;
-  text-transform: uppercase;
-  color: var(--gold-deep);
-}
-.gate-caption { bottom: max(2.5svh, 14px); opacity: 0; }
-.gate-caption .span { margin: .1em 0 0; font-size: 1rem; color: var(--ink-soft); }
-.gate-caption .script { margin: 0; font: 400 clamp(1.9rem, 5.2vh, 3rem)/1.1 var(--script); color: var(--gold-deep); }
-.gate-caption .name { margin: .1em 0 0; font: 600 clamp(1.15rem, 3.1vh, 1.75rem)/1.2 var(--display); }
-.gate-flash { position: absolute; inset: 0; background: #fffdf2; opacity: 0; pointer-events: none; }
 .gate-skip {
   position: absolute; right: 12px; top: 10px; z-index: 3;
   min-width: 60px; min-height: 44px;
@@ -156,84 +101,6 @@ html.play-intro #gate-root { display: block; }
   cursor: pointer;
 }
 .gate-skip:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
-
-/* The story before the gate: night, the lamp, the verse, the light. */
-.gate-overlay { --door-delay: 8800ms; --vine-delay: 5800ms; --glow-delay: 9000ms; cursor: pointer; }
-.gate-overlay.lit { cursor: default; }
-.gate-overlay.hold .gate-scene * { animation-play-state: paused !important; }
-.gate-doves { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.night {
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, #070a22 0%, #11143a 44%, #2b2348 76%, #4a3049 100%);
-}
-.stars { position: absolute; inset: 0; width: 100%; height: 100%; animation: twinkle 3.4s ease-in-out infinite alternate; }
-.stars.b { animation-duration: 2.3s; animation-delay: -1.2s; }
-@keyframes twinkle { from { opacity: 1; } to { opacity: .35; } }
-.lamp-glow {
-  position: absolute;
-  width: 150vmin; height: 150vmin;
-  opacity: 0;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-.touch-ring {
-  position: absolute;
-  width: 90px; height: 90px;
-  margin: -45px 0 0 -45px;
-  border: 2px solid rgba(255, 226, 160, .9);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: touch-ring .7s ease-out forwards;
-}
-@keyframes touch-ring { from { opacity: 1; transform: scale(.2); } to { opacity: 0; transform: scale(1.6); } }
-.embers { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.lamp-rig { position: absolute; width: clamp(130px, 36vw, 190px); transform: translate(-50%, -50%); pointer-events: none; }
-.lamp { display: block; width: 100%; height: auto; overflow: visible; }
-.lamp-flame { opacity: 0; transform-origin: 80px 72px; }
-.lit .lamp-flame { animation: ignite 1.1s cubic-bezier(.2, .8, .3, 1.3) both; }
-.lit .lamp-flicker { transform-origin: 80px 72px; animation: flicker 1.5s ease-in-out infinite alternate; }
-@keyframes ignite { from { opacity: 0; transform: scale(.1); } to { opacity: 1; transform: scale(1); } }
-@keyframes flicker {
-  0% { transform: scale(1, 1) skewX(0deg); }
-  30% { transform: scale(.96, 1.06) skewX(-2deg); }
-  65% { transform: scale(1.03, .96) skewX(2deg); }
-  100% { transform: scale(.98, 1.04) skewX(-1deg); }
-}
-.lamp-hint {
-  position: absolute; left: 24px; right: 24px; top: calc(62% + clamp(84px, 22vw, 116px));
-  margin: 0;
-  text-align: center;
-  font-style: italic;
-  font-size: 1.2rem;
-  color: #fbe9c4;
-  animation: hint-breathe 2.6s ease-in-out infinite alternate;
-}
-@keyframes hint-breathe { from { opacity: .55; } to { opacity: 1; } }
-.gate-verse { position: absolute; left: 22px; right: 22px; top: 17%; text-align: center; pointer-events: none; }
-.gate-verse p {
-  margin: 0 0 .35em;
-  opacity: 0;
-  font: 400 clamp(1.55rem, 6.6vw, 2.7rem)/1.25 var(--script);
-  color: #fff1cf;
-  text-shadow: 0 0 22px rgba(255, 190, 110, .55);
-  text-wrap: balance;
-}
-.gate-burst {
-  position: absolute; left: 50%; top: 47%;
-  width: 240vmax; height: 240vmax;
-  opacity: 0;
-  transform: translate(-50%, -50%);
-  will-change: transform, opacity;
-  pointer-events: none;
-}
-.gate-portrait { position: absolute; opacity: 0; will-change: transform; }
-.gate-halo {
-  position: absolute; inset: -30%;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(255, 252, 232, .95) 52%, rgba(255, 238, 180, .55) 70%, rgba(255, 238, 180, 0) 100%);
-  animation: halo 3.2s ease-in-out infinite alternate;
-}
-@keyframes halo { from { transform: scale(.96); opacity: .8; } to { transform: scale(1.06); opacity: 1; } }
 
 /* The mantra button stays reachable above everything, including the opening. */
 .sound-btn {
@@ -253,6 +120,43 @@ html.play-intro #gate-root { display: block; }
 .sound-btn.on .waves { display: block; }
 .sound-btn.on .mute { display: none; }
 .sound-btn:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
+
+/* ---------- The film that opens the site ---------- */
+.film { position: fixed; inset: 0; z-index: 50; overflow: hidden; background: #050403; cursor: pointer; color: #fbf1da; }
+.film.lit { cursor: default; }
+.film-clip { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.film-clip.lamp { transition: opacity 1.8s ease-in-out; }
+.film.dawn .film-clip.lamp { opacity: 0; }
+.film-text { position: absolute; left: 0; right: 0; padding: 0 24px; text-align: center; }
+.film-scrim {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 38%;
+  opacity: 0;
+  background: linear-gradient(180deg, rgba(5, 4, 3, 0), rgba(5, 4, 3, .9) 62%);
+  transition: opacity 1.4s ease-in-out;
+  pointer-events: none;
+}
+.film.reading .film-scrim { opacity: 1; }
+.film.dawn .film-scrim { opacity: 0; transition-duration: .9s; }
+/* On wide screens the vertical film sits uncropped on black, with words kept inside its frame. */
+@media (min-aspect-ratio: 3 / 4) {
+  .film-clip { left: 50%; width: calc(100dvh * 9 / 16); margin-left: calc(100dvh * -9 / 32); }
+  .film-text, .film-scrim { left: 50%; right: auto; width: calc(100dvh * 9 / 16); margin-left: calc(100dvh * -9 / 32); padding: 0 24px; }
+}
+.film-text p { margin: 0; }
+.film-text, .film-verse p { pointer-events: none; }
+.film-om, .film-hint, .film-caption, .film-verse p { opacity: 0; transition: opacity 1.4s ease-in-out; }
+.film-om.show, .film-hint.show, .film-caption.show, .film-verse p.show { opacity: 1; }
+.film-om { top: max(9svh, 70px); margin: 0; font: 500 .95rem/1.2 var(--serif); letter-spacing: .34em; text-indent: .34em; text-transform: uppercase; color: #d9c8a4; }
+.film-hint { bottom: max(7svh, 44px); margin: 0; font: italic 400 1.15rem/1.35 var(--serif); color: #e9dcc0; }
+.film-verse { bottom: max(5svh, 30px); }
+.film-verse p { font: italic 400 clamp(1.3rem, 5.4vw, 1.75rem)/1.35 var(--serif); color: #f6e8cc; text-wrap: balance; }
+.film-verse p + p { margin-top: .3em; }
+.film.dawn .film-verse { opacity: 0; transition: opacity .9s ease-out; }
+.film-caption { top: max(13svh, 84px); text-shadow: 0 1px 16px rgba(10, 30, 45, .55); color: #fff; }
+.film-caption .remember { font: italic 400 1.15rem/1.3 var(--serif); }
+.film-caption .name { margin-top: 6px; font: 500 clamp(1.6rem, 6.6vw, 2.3rem)/1.2 var(--display); text-wrap: balance; }
+.film-caption .span { margin-top: 8px; font: 400 1.05rem/1.3 var(--serif); }
 
 /* ---------- Page ---------- */
 #page {
@@ -301,49 +205,37 @@ html.play-intro #gate-root { display: block; }
 .bank-lotus { position: absolute; left: 50%; top: 56%; width: 118px; height: 66px; transform: translate(-50%, -50%); overflow: visible; }
 .bank:not(.seen) .lotus-petal, .bank:not(.seen) .bloom { animation-play-state: paused; }
 
-/* The open gate that ends the page. */
+/* The page ends on the lake footage, with his portrait in the morning sky. */
 .heaven-end {
+  --end-w: min(100vw, 620px);
   position: relative;
   z-index: 1;
   left: 50%;
-  width: 100vw;
-  height: calc(min(120vw, 620px) + var(--dock-h) + env(safe-area-inset-bottom));
-  margin: 8px 0 0 -50vw;
-  overflow-x: clip;
+  width: var(--end-w);
+  height: min(177vw, 900px);
+  margin: 8px 0 0 calc(var(--end-w) / -2);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 14%);
+  mask-image: linear-gradient(180deg, transparent, #000 14%);
 }
-.heaven-end .gate-box {
-  top: 2%;
-  height: min(112vw, 560px);
-  transform: translateX(-50%);
+@media (min-width: 621px) {
+  .heaven-end {
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 14%), linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+    mask-image: linear-gradient(180deg, transparent, #000 14%), linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
 }
-.heaven-end .gate-leaf { --door-delay: 900ms; }
-.heaven-end:not(.seen) * { animation-play-state: paused !important; }
-.end-glow {
-  position: absolute; left: 50%; top: min(56vw, 280px);
-  width: 190vmin; height: 190vmin;
-  transform: translate(-50%, -50%);
-  animation: fade-in 2.4s ease-in 1000ms both;
-  pointer-events: none;
-}
+.heaven-end video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; }
 .end-portrait {
-  position: absolute; left: 50%; top: 53%;
-  width: 60%;
+  position: absolute; left: 50%; top: 13%;
+  width: min(50vw, 240px);
   aspect-ratio: 4 / 5;
-  transform: translate(-50%, -50%);
-  animation: end-portrait-in 2.2s ease-out 2200ms both;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: opacity 2.4s ease-in-out .4s;
 }
-@keyframes end-portrait-in {
-  from { opacity: 0; filter: brightness(1.9); transform: translate(-50%, -50%) scale(.9); }
-  to { opacity: 1; filter: brightness(1); transform: translate(-50%, -50%) scale(1); }
-}
-.end-floor {
-  position: absolute; left: 0; bottom: 0;
-  width: 100%;
-  height: calc(var(--dock-h) + min(46vw, 230px));
-}
-.end-floor canvas { width: 100%; height: 100%; display: block; object-fit: cover; }
-.end-doves { position: absolute; inset: 0; pointer-events: none; }
-.end-lamp { position: absolute; left: 50%; top: calc(2% + min(112vw, 560px) * .93); width: clamp(64px, 18vw, 92px); transform: translate(-50%, -50%); }
+.heaven-end.seen .end-portrait { opacity: 1; }
 .om {
   margin: 0 0 18px;
   font: 600 1.05rem/1.2 var(--display);
@@ -611,11 +503,10 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .rays, .cloud { animation: none; }
-  .bloom, .lotus-petal, .end-portrait, .heaven-end .gate-leaf, .end-glow, .gate-frame-art .vine { animation-duration: 1ms; animation-delay: 0ms; }
-  .v-bloom, .collapse, .dock-panel { transition: none; }
-  .touch-ring { animation-duration: 1ms; }
+  .bloom, .lotus-petal { animation-duration: 1ms; animation-delay: 0ms; }
+  .v-bloom, .collapse, .dock-panel, .end-portrait { transition: none; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
-  .thanks-dove .dove, .wing, .lamp-flicker, .stars, .gate-halo { animation: none; }
+  .thanks-dove .dove, .wing { animation: none; }
 }
 .sound-btn.compact { padding: 0; width: 44px; justify-content: center; }
 .sound-btn.compact span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }

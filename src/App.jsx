@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Closing from './components/Closing.jsx';
 import Details from './components/Details.jsx';
 import Dock from './components/Dock.jsx';
+import Ending from './components/Ending.jsx';
 import Hero from './components/Hero.jsx';
 import RsvpForm from './components/RsvpForm.jsx';
 import SoundButton from './components/SoundButton.jsx';
@@ -34,7 +35,7 @@ export default function App() {
         <RsvpForm />
         <Bank seed={281} />
         <Closing />
-        <div className="heaven-end" id="heaven-end" aria-hidden="true" />
+        <Ending />
       </main>
 
       <Dock />
