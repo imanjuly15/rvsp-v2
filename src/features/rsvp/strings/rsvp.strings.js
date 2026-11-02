@@ -1,0 +1,55 @@
+/* Every word the RSVP card shows. Change wording here only. {name}-style placeholders are filled by fillTemplate(). */
+export const STRINGS = {
+  title: 'Confirmation of Attendance',
+  leadWithDetails: 'Please let us know if you are able to join us, so the family can prepare.',
+  leadNoDetails: 'Please let us know if you hope to join us, so the family can prepare and keep you informed once arrangements are confirmed.',
+  leadDeadline: 'Kindly respond by {date}.',
+
+  greeting: 'Dear {name}',
+  reserved: 'We have reserved a place for {people}.',
+  loading: 'Loading your invitation…',
+  busy: 'Busy right now, trying again…',
+
+  attendLegend: 'Will you be able to attend?',
+  yes: 'Yes, I will attend',
+  no: 'Unable to attend',
+  nameLabel: 'Your full name',
+  phoneLabel: 'Phone number',
+  phoneHint: 'So the family can reach you with ceremony updates.',
+  optional: '(optional)',
+  paxLabel: 'Number of people attending',
+  paxFewer: 'One person fewer',
+  paxMore: 'One person more',
+  paxHint: 'Including yourself. Up to {max}.',
+  noteLabel: 'A message for the family',
+  noteHint: 'Your prayers, thoughts or a memory. Seen only by the family.',
+  noteCount: '{n} characters left',
+  honeypotLabel: 'Leave this field empty',
+
+  submit: 'Send my response',
+  submitYes: 'Confirm my attendance',
+  submitNo: 'Send my regards',
+  sending: 'Sending…',
+  tryAgain: 'Try again',
+
+  needChoice: 'Please let us know if you are able to attend.',
+  needName: 'Please enter your name.',
+  badPhone: 'Please enter a valid phone number, for example 012 345 6789.',
+  networkError: 'We could not send your response. Please check your connection and try again.',
+  loadError: 'We could not load the RSVP form. Please check your connection and try again.',
+
+  thanksTitle: 'Thank you',
+  thanksYes: '{name}, we have noted {people} attending. Your presence means a great deal to the family. Om Shanti.',
+  thanksNo: '{name}, thank you for letting us know. Your prayers and kind thoughts are deeply appreciated. Om Shanti.',
+  repliedYes: 'You replied: Yes, {people}',
+  repliedNo: 'You replied: Unable to attend',
+  change: 'Change my response',
+  changeClosed: 'To change your reply, please contact the host.',
+
+  invalid: "This invitation link isn't valid. Please contact the host.",
+  closed: 'RSVP is closed. Please contact the host.',
+  contactHost: 'Contact the host',
+
+  personOne: '1 person',
+  personMany: '{n} people',
+};
