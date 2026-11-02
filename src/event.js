@@ -10,9 +10,9 @@ export const EVENT = {
   venue_address: 'Tropicana Golf & Country Resort, Tropicana, 47410 Petaling Jaya, Selangor',
   map_url: '', // Optional Google Maps link. Without one, directions are built from the venue name and address.
   dress_code: '',
-  rsvp_deadline: '', // For example '2026-11-06'.
+  rsvp_deadline: '', // Not used any more: the RSVP deadline is read from the Google Sheet's Config tab.
   note: '',
 
-  // Where RSVP answers are sent, as a JSON POST. WHILE THIS IS EMPTY, ANSWERS ARE NOT SAVED ANYWHERE.
+  // Not used any more: RSVP answers go to the Google Sheet set in .env (see docs/rsvp-host-guide.md).
   rsvp_endpoint: '',
 };

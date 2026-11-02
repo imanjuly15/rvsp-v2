@@ -24,15 +24,21 @@ Upload the `dist` folder to any static host, such as Netlify, Cloudflare Pages o
 | Path | What it holds |
 | --- | --- |
 | `src/event.js` | Ceremony date, time, venue and attire. This is the file to edit. |
-| `src/components/` | React components: page sections, RSVP form, countdown, bottom bar |
+| `src/components/` | React components: page sections, countdown, bottom bar |
+| `src/features/rsvp/` | The RSVP form and everything around it |
+| `apps-script/`, `docs/` | The Google Sheet script and the host guide (not part of the site) |
 | `src/lib/` | Canvas and SVG drawing, the opening animation, the scrolling sky, the mantra player |
 | `public/assets/` | Portrait and mantra audio |
 
 ## RSVP answers
 
-**The form does not save answers yet.** A guest sees the thank-you message, but the answer goes nowhere until `rsvp_endpoint` in `src/event.js` is set to an address that accepts a JSON POST with these fields:
+Answers are saved to a Google Sheet through a Google Apps Script web app. Personal links (`?id=ABCD2345`) greet the guest by name; the plain address is a shared link.
 
-`attending`, `name`, `phone`, `pax`, `relationship`, `message`
+- Settings: copy `.env.example` to `.env`. `VITE_RSVP_USE_MOCK=true` runs on demo data (`?id=demo1`, `?id=demo2`); for the live Sheet set it to `false` and fill `VITE_RSVP_SCRIPT_URL`.
+- How the code is organised: [`src/features/rsvp/README.md`](src/features/rsvp/README.md)
+- Setting up the Sheet, deploying the script, sending links: [`docs/rsvp-host-guide.md`](docs/rsvp-host-guide.md)
+- The script itself: `apps-script/Code.gs` (pasted into the Sheet, never shipped with the site)
+- Tests: `npm test`
 
 ## Opening sound
 
